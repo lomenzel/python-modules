@@ -1,36 +1,38 @@
 {
-  description =
-    "A Flake that includes a view python packages i use in my projects";
+  description = "A Flake that includes a view python packages i use in my projects";
 
-  inputs = { nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable"; };
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+  };
 
-  outputs = { self, nixpkgs }:
-    let
-      system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; };
-    in {
-      packages.${system} = {
-        fsrs = pkgs.python311Packages.buildPythonPackage rec {
-          pname = "fsrs";
-          version = "2.1.1";
+  outputs =
+    { self, nixpkgs }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
+      let
+        pkgs = import nixpkgs { inherit system; };
+      in
+      {
+        packages = {
+          fsrs = pkgs.python311Packages.buildPythonPackage rec {
+            pname = "fsrs";
+            version = "2.1.1";
 
-          src = pkgs.fetchPypi {
-            inherit pname version;
-            sha256 = "sha256-QA4atd+2xZW0bYOXfyu/BYGqxNY5TF42PoW2tjCZZt8=";
+            src = pkgs.fetchPypi {
+              inherit pname version;
+              sha256 = "sha256-QA4atd+2xZW0bYOXfyu/BYGqxNY5TF42PoW2tjCZZt8=";
+            };
+
+            propagatedBuildInputs = with pkgs.python311Packages; [ datetime ];
+
+            meta = {
+              description = "A Python Package implements Free Spaced Repetition Scheduler algorithm";
+              homepage = "https://github.com/open-spaced-repetition/free-spaced-repetition-scheduler";
+              license = pkgs.lib.licenses.mit;
+            };
           };
-
-          propagatedBuildInputs = with pkgs.python311Packages; [ datetime ];
-
-          meta = {
-            description =
-              "A Python Package implements Free Spaced Repetition Scheduler algorithm";
-            homepage =
-              "https://github.com/open-spaced-repetition/free-spaced-repetition-scheduler";
-            license = pkgs.lib.licenses.mit;
-          };
-        };
-        extra-streamlit-components =
-          pkgs.python311Packages.buildPythonPackage rec {
+          extra-streamlit-components = pkgs.python311Packages.buildPythonPackage rec {
             pname = "extra-streamlit-components";
             version = "0.1.71";
 
@@ -44,14 +46,12 @@
             };
             doCheck = false; # nicht meine schuld dass deren tests failen
             meta = {
-              description =
-                "An all-in-one place, to find complex or just natively unavailable components on streamlit.";
-              homepage =
-                "https://github.com/Mohamed-512/Extra-Streamlit-Components";
+              description = "An all-in-one place, to find complex or just natively unavailable components on streamlit.";
+              homepage = "https://github.com/Mohamed-512/Extra-Streamlit-Components";
               license = pkgs.lib.licenses.mit;
             };
           };
-      };
-    };
+        };
+      }
+    );
 }
-
