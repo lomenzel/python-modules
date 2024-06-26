@@ -7,7 +7,7 @@
   };
 
   outputs =
-    { self, nixpkgs }:
+    { self, flake-utils, nixpkgs }:
     flake-utils.lib.eachDefaultSystem (
       system:
       let
