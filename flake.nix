@@ -25,7 +25,7 @@
                 owner = "lomenzel";
                 repo = "py-fsrs";
                 rev = "7b12a9815288c8cd1b66477dc56c12fb81d535e2";
-                sha256 = "sha256-90tPs/JTCMJb0UrCc+hIpKR2TFzcQOYoz5abTQ7tyfE=";
+                sha256 = "";
               };
               doCheck = false; # nicht meine schuld dass deren tests failen
               meta = {
