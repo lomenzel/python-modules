@@ -24,8 +24,8 @@
               src = pkgs.fetchFromGitHub {
                 owner = "lomenzel";
                 repo = "py-fsrs";
-                rev = "7b12a9815288c8cd1b66477dc56c12fb81d535e2";
-                sha256 = "sha256-3sW9hJg0QLHyFAKHrj9jyyN/tc+HKQ1m9XyTBcKVXiA=";
+                rev = "c9d2c69c744e8c7e960fcec4536e2a67c3b4846c";
+                sha256 = "";
               };
               doCheck = false; # nicht meine schuld dass deren tests failen
               meta = {
