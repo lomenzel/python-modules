@@ -21,7 +21,7 @@
 
             src = pkgs.fetchPypi {
               inherit pname version;
-              sha256 = "sha256-QA4atd+2xZW0bYOXfyu/BYGqxNY5TF42PoW2tjCZZt8=";
+              sha256 = "sha256-gO7evRkne1nIVoKBRjWW+EuRJOFqPCTqQQygfiHRjH4=";
             };
 
             propagatedBuildInputs = with pkgs.python311Packages; [ datetime ];
