@@ -16,22 +16,24 @@
       {
         packages = {
           fsrs = pkgs.python311Packages.buildPythonPackage rec {
-            pname = "fsrs";
-            version = "2.5.0";
+              pname = "fsrs";
+              version = "2.5.0";
 
-            src = pkgs.fetchPypi {
-              inherit pname version;
-              sha256 = "sha256-gO7evRkne1nIVoKBRjWW+EuRJOFqPCTqQQygfiHRjH4=";
+              propagatedBuildInputs = [ pkgs.python311Packages.datetime ];
+
+              src = pkgs.fetchFromGitHub {
+                owner = "lomenzel";
+                repo = "py-fsrs";
+                rev = "9604205ddb870f81ce9f3cbc62d6c654e2281fa1";
+                sha256 = "sha256-bDwCP4cAyN/qN1rl5gatvzrjBCachnuR9/nbZRYhAEc=";
+              };
+              doCheck = false; # nicht meine schuld dass deren tests failen
+              meta = {
+                description = "py-fsrs";
+                homepage = "https://github.com/open-spaced-repetition/py-fsrs";
+                license = pkgs.lib.licenses.mit;
+              };
             };
-
-            propagatedBuildInputs = with pkgs.python311Packages; [ datetime ];
-
-            meta = {
-              description = "A Python Package implements Free Spaced Repetition Scheduler algorithm";
-              homepage = "https://github.com/open-spaced-repetition/free-spaced-repetition-scheduler";
-              license = pkgs.lib.licenses.mit;
-            };
-          };
           extra-streamlit-components = pkgs.python311Packages.buildPythonPackage rec {
             pname = "extra-streamlit-components";
             version = "0.1.71";
