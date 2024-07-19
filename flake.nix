@@ -24,7 +24,7 @@
               src = pkgs.fetchFromGitHub {
                 owner = "lomenzel";
                 repo = "py-fsrs";
-                rev = "9604205ddb870f81ce9f3cbc62d6c654e2281fa1";
+                rev = "7b12a9815288c8cd1b66477dc56c12fb81d535e2";
                 sha256 = "sha256-90tPs/JTCMJb0UrCc+hIpKR2TFzcQOYoz5abTQ7tyfE=";
               };
               doCheck = false; # nicht meine schuld dass deren tests failen
