@@ -17,7 +17,7 @@
         packages = {
           fsrs = pkgs.python311Packages.buildPythonPackage rec {
             pname = "fsrs";
-            version = "2.1.1";
+            version = "2.5.0";
 
             src = pkgs.fetchPypi {
               inherit pname version;
