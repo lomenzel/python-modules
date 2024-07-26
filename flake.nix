@@ -20,35 +20,36 @@
       {
         packages = {
 
+          streamlit-cookies-controller-src = pkgs.fetchFromGitHub {
+            owner = "NathanChen198";
+            repo = "streamlit-cookies-controller";
+            rev = "949d52732b95250ffbebef2181d591ea9a4fbdcc";
+            sha256 = "sha256-uJk6xKDQ6ACCJ38wTlpe4HtPdECFnkIvLzRJKWnrpqo=";
+          };
+
+          streamlit-cookies-controller-without-frontend = pkgs.python311Packages.buildPythonPackage rec {
+            pname = "streamlit_cookies_controller";
+            version = "0.0.4";
+
+            propagatedBuildInputs = [ pkgs.python311Packages.streamlit ];
+
+            src = self.packages.${system}.streamlit-cookies-controller-src;
+
+            meta = {
+              description = "Control client browser cookie for the site";
+              homepage = "https://github.com/NathanChen198/streamlit-cookies-controller";
+              license = pkgs.lib.licenses.mit;
+            };
+          };
+
           streamlit-cookies-controller =
             let
-              git_src = pkgs.fetchFromGitHub {
-                owner = "NathanChen198";
-                repo = "streamlit-cookies-controller";
-                rev = "949d52732b95250ffbebef2181d591ea9a4fbdcc";
-                sha256 = "sha256-uJk6xKDQ6ACCJ38wTlpe4HtPdECFnkIvLzRJKWnrpqo=";
-              };
+              git_src = self.packages.${system}.streamlit-cookies-controller-src;
             in
             pkgs.stdenv.mkDerivation rec {
               name = "streamlit-cookies-controller";
-              src = pkgs.python311Packages.buildPythonPackage rec {
-                pname = "streamlit_cookies_controller";
-                version = "0.1.71";
+              src = self.packages.${system}.streamlit-cookies-controller-without-frontend;
 
-                propagatedBuildInputs = [ pkgs.python311Packages.streamlit ];
-
-                src = git_src;
-                #doCheck = false; # nicht meine schuld dass deren tests failen
-                meta = {
-                  description = "Control client browser cookie for the site";
-                  homepage = "https://github.com/NathanChen198/streamlit-cookies-controller";
-                  license = pkgs.lib.licenses.mit;
-                };
-              };
-
-              # maybe that works :/
-              buildInputs = [src];
-              
               installPhase =
                 let
                   frontend-build =
