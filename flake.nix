@@ -45,6 +45,10 @@
                   license = pkgs.lib.licenses.mit;
                 };
               };
+
+              # maybe that works :/
+              buildInputs = [src];
+              
               installPhase =
                 let
                   frontend-build =
