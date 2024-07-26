@@ -50,7 +50,7 @@
               name = "streamlit-cookies-controller";
               src = self.packages.${system}.streamlit-cookies-controller-without-frontend;
 
-              buildInputs = [ pkgs.python311Packages.streamlit ]
+              buildInputs = [ pkgs.python311Packages.streamlit ];
 
               installPhase =
                 let
