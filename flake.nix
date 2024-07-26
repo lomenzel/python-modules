@@ -32,7 +32,7 @@
             pkgs.stdenv.mkDerivation rec {
               name = "streamlit-cookies-controller";
               src = pkgs.python311Packages.buildPythonPackage rec {
-                pname = "streamlit-cookies-controller";
+                pname = "streamlit_cookies_controller";
                 version = "0.1.71";
 
                 propagatedBuildInputs = [ pkgs.python311Packages.streamlit ];
