@@ -80,6 +80,26 @@
                 license = pkgs.lib.licenses.mit;
               };
             };
+            gooey = pkgs.python311Packages.buildPythonPackage rec {
+              pname = "Gooey";
+              version = "1.0.8.1";
+              pyproject = true;
+              propagatedBuildInputs = with pkgs.python311Packages; [
+                setuptools
+                pillow
+                psutil
+                colored
+                pygtrie
+                wxpython
+              ];
+              src = pkgs.fetchPypi {
+                inherit pname version;
+                hash = "sha256-CNa/U09NUNUNr7pc/Gjc8xpunu7xOpTL4+oXxORcRnE=";
+              };
+              meta = {
+                description = "Turn (almost) any commandline program into a full GUI application with one line";
+              };
+            };
 
           };
       }
