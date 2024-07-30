@@ -81,7 +81,7 @@
               };
             };
             gooey = pkgs.python311Packages.buildPythonPackage rec {
-              pname = "gooey";
+              pname = "Gooey";
               version = "1.0.8.1";
               pyproject = true;
               propagatedBuildInputs = with pkgs.python311Packages; [
