@@ -100,6 +100,25 @@
                 description = "Turn (almost) any commandline program into a full GUI application with one line";
               };
             };
+            ytmusic-deleter = pkgs.python311Packages.buildPythonPackage rec {
+              pname = "ytmusic-deleter";
+              version = "2.5.1";
+              pyproject = true;
+              propagatedBuildInputs = with pkgs.python311Packages; [
+                pdm-backend
+                click
+                enlighten
+                thefuzz
+                ytmusicapi
+                inquirerpy
+              ];
+              src = pkgs.fetchFromGitHub {
+                owner = "apastel";
+                repo = "ytmusic-deleter";
+                rev = "fbc5e53ce840c539e65b34097ed25ad03b65a0ce";
+                sha256 = "sha256-OzyCtgpwHhgN0O1ksroyHFjmKIOM+ZGHjWfy3us1+Oc=";
+              };
+            };
 
           };
       }
