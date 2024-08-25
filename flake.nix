@@ -1,5 +1,5 @@
 {
-  description = "A Flake that includes a view python packages i use in my projects";
+  description = "A Flake that includes a few python packages i use in my projects";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
